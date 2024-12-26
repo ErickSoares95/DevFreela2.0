@@ -13,5 +13,15 @@ namespace DevFreela.API.Controllers
         {
             return Ok();
         }
+        //post picture
+        [HttpPut]
+        public IActionResult PostProfilePicture (IFormFile file)
+        {
+            var description = $"file {file.FileName}, Size: {file.Length} ";
+
+            //processamento
+
+            return Ok(description);
+        }
     }
 }

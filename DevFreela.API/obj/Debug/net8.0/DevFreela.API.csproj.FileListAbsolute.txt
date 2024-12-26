@@ -34,3 +34,4 @@ C:\Users\erik.lira\Desktop\Csharp\DevFreela\DevFreela.API\obj\Debug\net8.0\refin
 C:\Users\erik.lira\Desktop\Csharp\DevFreela\DevFreela.API\obj\Debug\net8.0\DevFreela.API.pdb
 C:\Users\erik.lira\Desktop\Csharp\DevFreela\DevFreela.API\obj\Debug\net8.0\DevFreela.API.genruntimeconfig.cache
 C:\Users\erik.lira\Desktop\Csharp\DevFreela\DevFreela.API\obj\Debug\net8.0\ref\DevFreela.API.dll
+C:\Users\erik.lira\Desktop\Csharp\DevFreela\DevFreela.API\obj\Debug\net8.0\DevFreela.API.sourcelink.json
