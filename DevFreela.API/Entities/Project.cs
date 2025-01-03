@@ -25,7 +25,7 @@ namespace DevFreela.API.Entities
         public int IdFreelancer { get; private set; }
         public User Client { get; private set; }
         public User Freelancer { get; private set; }
-        public decimal TotalCoast { get; private set; }
+        public decimal TotalCost { get; private set; }
         public DateTime? StartedAt { get; private set; }
         public DateTime? CompletedAt { get; private set; }
         public ProjectStateEnum Status { get; private set; }
@@ -71,7 +71,7 @@ namespace DevFreela.API.Entities
         {
             Title = title;
             Description = description;
-            TotalCoast = totalCost;
+            TotalCost = totalCost;
         }
 
     }

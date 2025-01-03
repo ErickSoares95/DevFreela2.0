@@ -11,9 +11,8 @@ namespace DevFreela.API.Controllers
     {
         //Padrão options, atráves da propriedade value consegue configurações
         private readonly FreelanceTotalCostConfig _config;
-        public ProjectsController(IOptions<FreelanceTotalCostConfig> options)
+        public ProjectsController()
         {
-            _config = options.Value;
         }
 
         //Get api/projects?search=crm
@@ -35,12 +34,7 @@ namespace DevFreela.API.Controllers
         //Primeiro é o metodo que poderar se consultado, segundo parametro que no caso é o id e terceiro o modelo
         [HttpPost]
         public IActionResult Post(CreateProjectInputModel model)
-        {
-            if (model.TotalCoast < _config.Minimum || model.TotalCoast > _config.Maximum)
-            {
-                return BadRequest("Numero fora dos limites");
-            }
-
+        {    
             return CreatedAtAction(nameof(GetById), new {id = 1}, model);
         }        
 
