@@ -1,4 +1,5 @@
 ﻿using DevFreela.API.Models;
+using DevFreela.API.Persistence;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
@@ -9,10 +10,12 @@ namespace DevFreela.API.Controllers
     [Route("api/projects")]
     public class ProjectsController : ControllerBase
     {
+        public readonly DevFreelaDbContext _context;
         //Padrão options, atráves da propriedade value consegue configurações
         private readonly FreelanceTotalCostConfig _config;
-        public ProjectsController()
+        public ProjectsController(DevFreelaDbContext context)
         {
+            _context = context;
         }
 
         //Get api/projects?search=crm
