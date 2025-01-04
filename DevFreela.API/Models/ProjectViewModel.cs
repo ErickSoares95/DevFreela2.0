@@ -28,17 +28,17 @@ namespace DevFreela.API.Models
 
         public List<string> Comments { get; private set; }
 
-        public static ProjectViewModel FromEntity(Project entity)
+        public static ProjectViewModel FromEntity(Project project)
             => new(
-                entity.Id,
-                entity.Title,
-                entity.Description,
-                entity.IdClient,
-                entity.IdFreelancer,
-                entity.Client.FullName,
-                entity.Freelancer.FullName,
-                entity.TotalCost,
-                entity.Comments
+                project.Id,
+                project.Title,
+                project.Description,
+                project.IdClient,
+                project.IdFreelancer,
+                project.Client.FullName,
+                project.Freelancer.FullName,
+                project.TotalCost,
+                project.Comments
             );
     }
 }

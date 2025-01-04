@@ -15,7 +15,7 @@ namespace DevFreela.API.Controllers
             return Ok();
         }
         //PUT
-        [HttpPost("id}/skills")]
+        [HttpPost("{id}/skills")]
         public IActionResult PostSkills(UserSkillsInputModel model)
         {
             return NoContent();

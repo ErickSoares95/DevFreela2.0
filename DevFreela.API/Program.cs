@@ -8,14 +8,9 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 
 builder.Services.AddControllers();
-builder.Services.Configure<FreelanceTotalCostConfig>(
-    builder.Configuration.GetSection("FreelanceTotalCostConfig")
-);
+builder.Services.Configure<FreelanceTotalCostConfig>(builder.Configuration.GetSection("FreelanceTotalCostConfig"));
 
-builder.Services.AddDbContext<DevFreelaDbContext>(o =>
-{
-    o.UseInMemoryDatabase("DevFreelaDb");
-});
+builder.Services.AddDbContext<DevFreelaDbContext>(options => options.UseInMemoryDatabase("DevFreelaDb"));
 
 //Configurações execeptionhandler
 builder.Services.AddExceptionHandler<ApiExceptionHandler>();
