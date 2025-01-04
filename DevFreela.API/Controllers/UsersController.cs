@@ -1,6 +1,7 @@
 ﻿using DevFreela.API.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace DevFreela.API.Controllers
 {
@@ -8,6 +9,11 @@ namespace DevFreela.API.Controllers
     [Route("api/users")]
     public class UsersController : ControllerBase
     {
+        [HttpGet("{id}")]
+        public IActionResult Get()
+        {
+            return Ok();
+        }
         //POST api/users
         [HttpPost]
         public IActionResult Post(CreateUserInputModel model)
@@ -21,7 +27,7 @@ namespace DevFreela.API.Controllers
             return NoContent();
         }
         //post picture
-        [HttpPut]
+        [HttpPut("{id}/profile-picture")]
         public IActionResult PostProfilePicture (IFormFile file)
         {
             var description = $"file {file.FileName}, Size: {file.Length} ";

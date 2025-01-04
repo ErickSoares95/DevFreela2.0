@@ -55,6 +55,7 @@ namespace DevFreela.API.Persistence
                 .Entity<Project>(e =>
                 {
                     e.HasKey(p => p.Id);
+
                     e.HasOne(p => p.Freelancer)
                         .WithMany(f => f.FreelancerProjects)
                         .HasForeignKey(p => p.IdFreelancer)

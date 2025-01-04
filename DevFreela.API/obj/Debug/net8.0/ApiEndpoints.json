@@ -181,8 +181,24 @@
   },
   {
     "ContainingType": "DevFreela.API.Controllers.UsersController",
+    "Method": "Get",
+    "RelativePath": "api/users/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "DevFreela.API.Controllers.UsersController",
     "Method": "PostProfilePicture",
-    "RelativePath": "api/users",
+    "RelativePath": "api/users/{id}/profile-picture",
     "HttpMethod": "PUT",
     "IsController": true,
     "Order": 0,
@@ -191,6 +207,11 @@
         "Name": "file",
         "Type": "Microsoft.AspNetCore.Http.IFormFile",
         "IsRequired": false
+      },
+      {
+        "Name": "id",
+        "Type": "",
+        "IsRequired": true
       }
     ],
     "ReturnTypes": []
