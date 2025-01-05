@@ -181,7 +181,7 @@
   },
   {
     "ContainingType": "DevFreela.API.Controllers.UsersController",
-    "Method": "Get",
+    "Method": "GetById",
     "RelativePath": "api/users/{id}",
     "HttpMethod": "GET",
     "IsController": true,
@@ -189,7 +189,7 @@
     "Parameters": [
       {
         "Name": "id",
-        "Type": "",
+        "Type": "System.Int32",
         "IsRequired": true
       }
     ],
