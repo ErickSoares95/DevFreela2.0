@@ -18,6 +18,24 @@
               "type": "string",
               "default": ""
             }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 0
+            }
+          },
+          {
+            "name": "size",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 3
+            }
           }
         ],
         "responses": {
@@ -228,6 +246,29 @@
         }
       }
     },
+    "/api/skills/{id}": {
+      "get": {
+        "tags": [
+          "Skills"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/api/skills": {
       "get": {
         "tags": [
@@ -269,19 +310,18 @@
         }
       }
     },
-    "/api/users/{id}": {
+    "/api/users": {
       "get": {
         "tags": [
           "Users"
         ],
         "parameters": [
           {
-            "name": "id",
-            "in": "path",
-            "required": true,
+            "name": "search",
+            "in": "query",
             "schema": {
-              "type": "integer",
-              "format": "int32"
+              "type": "string",
+              "default": ""
             }
           }
         ],
@@ -290,9 +330,7 @@
             "description": "OK"
           }
         }
-      }
-    },
-    "/api/users": {
+      },
       "post": {
         "tags": [
           "Users"
@@ -323,6 +361,29 @@
         }
       }
     },
+    "/api/users/{id}": {
+      "get": {
+        "tags": [
+          "Users"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/api/users/{id}/skills": {
       "post": {
         "tags": [
@@ -334,7 +395,8 @@
             "in": "path",
             "required": true,
             "schema": {
-              "type": "string"
+              "type": "integer",
+              "format": "int32"
             }
           }
         ],

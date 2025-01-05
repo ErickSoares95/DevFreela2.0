@@ -11,6 +11,16 @@
         "Name": "search",
         "Type": "System.String",
         "IsRequired": false
+      },
+      {
+        "Name": "page",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "size",
+        "Type": "System.Int32",
+        "IsRequired": false
       }
     ],
     "ReturnTypes": []
@@ -164,6 +174,38 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "DevFreela.API.Controllers.SkillsController",
+    "Method": "GetById",
+    "RelativePath": "api/skills/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "DevFreela.API.Controllers.UsersController",
+    "Method": "Get",
+    "RelativePath": "api/users",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "search",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "DevFreela.API.Controllers.UsersController",
     "Method": "Post",
     "RelativePath": "api/users",
@@ -225,13 +267,13 @@
     "Order": 0,
     "Parameters": [
       {
-        "Name": "model",
-        "Type": "DevFreela.API.Models.UserSkillsInputModel",
+        "Name": "id",
+        "Type": "System.Int32",
         "IsRequired": true
       },
       {
-        "Name": "id",
-        "Type": "",
+        "Name": "model",
+        "Type": "DevFreela.API.Models.UserSkillsInputModel",
         "IsRequired": true
       }
     ],

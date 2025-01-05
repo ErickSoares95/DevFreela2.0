@@ -23,6 +23,7 @@ namespace DevFreela.API.Controllers
         {
             var users = _context.Users
                 .Include(u => u.Skills)
+                .ThenInclude(u => u.Skill)
                 .Where(u => !u.IsDeleted).ToList();
 
             var model = users.Select(UserItemViewModel.FromEntity).ToList();
