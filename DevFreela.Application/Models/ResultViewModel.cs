@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-//Padrão result para retornar mensagens da API
-namespace DevFreela.Application.Models
+﻿namespace DevFreela.Application.Models
 {
     public class ResultViewModel
     {
