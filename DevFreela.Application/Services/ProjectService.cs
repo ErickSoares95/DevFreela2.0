@@ -1,26 +1,19 @@
-﻿using DevFreela.Core.Entities;
-using DevFreela.Application.Models;
+﻿using DevFreela.Application.Models;
+using DevFreela.Core.Entities;
 using DevFreela.Infrastructure.Persistence;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Options;
 
-namespace DevFreela.API.Controllers
+namespace DevFreela.Application.Services
 {
-    [ApiController]
-    [Route("api/projects")]
-    public class ProjectsController : ControllerBase
+    public class ProjectService : IProjectService
     {
-        public readonly DevFreelaDbContext _context;
-        //Padrão options, atráves da propriedade value consegue configurações
-        private readonly FreelanceTotalCostConfig _config;
-        public ProjectsController(DevFreelaDbContext context)
+        private readonly DevFreelaDbContext _context;
+        public ProjectService(DevFreelaDbContext context)
         {
             _context = context;
         }
-        [HttpGet]
-        public IActionResult Get(string search = "")
+
+        public ResultViewModel<List<ProjectItemViewModel>> GetAll(string search = "")
         {
             var projects = _context.Projects
                 .Include(p => p.Client)
@@ -30,12 +23,10 @@ namespace DevFreela.API.Controllers
 
             var model = projects.Select(ProjectItemViewModel.FromEntity).ToList();
 
-            return Ok(model);
+            return ResultViewModel<List<ProjectItemViewModel>>.Success(model);
         }
 
-        //Get api/projects/id
-        [HttpGet("{id}")]
-        public IActionResult GetById(int id)
+        public ResultViewModel<ProjectViewModel> GetById(int id)
         {
             var project = _context.Projects
                 .Include(p => p.Client)
@@ -43,101 +34,97 @@ namespace DevFreela.API.Controllers
                 .Include(p => p.Comments)
                 .SingleOrDefault(p => p.Id == id);
 
-            var model = ProjectViewModel.FromEntity(project);
-            return Ok(model);
-        }
+            if (project == null)
+            {
+                return ResultViewModel<ProjectViewModel>.Error("Projeto não existe");
+            }
 
-        //Post api/projects
-        //CreatedAtAction quando vocçe futuramente vai poder consultar em outro endpoint
-        //Primeiro é o metodo que poderar se consultado, segundo parametro que no caso é o id e terceiro o modelo
-        [HttpPost]
-        public IActionResult Post(CreateProjectInputModel model)
+            var model = ProjectViewModel.FromEntity(project);
+
+            return ResultViewModel<ProjectViewModel>.Success(model);
+        }        
+        
+        public ResultViewModel<int> Insert(CreateProjectInputModel model)
         {
             var project = model.ToEntity();
 
             _context.Projects.Add(project);
             _context.SaveChanges();
-            return CreatedAtAction(nameof(GetById), new {id = 1}, model);
+
+            return ResultViewModel<int>.Success(project.Id);
         }
 
-        //PUT api/projects/id
-        [HttpPut("{id}")]
-        public IActionResult Put(int id, UpdateProjectInputModel model)
+        public ResultViewModel Update(UpdateProjectInputModel model)
         {
-            var project = _context.Projects.SingleOrDefault(p => p.Id == id);
+            var project = _context.Projects.SingleOrDefault(p => p.Id == model.IdProject);
             if (project is null)
             {
-                return NotFound();
+                return ResultViewModel.Error("Projeto não existe");
             }
 
             project.Update(model.Title, model.Description, model.TotalCost);
             _context.Projects.Update(project);
             _context.SaveChanges();
 
-            return NoContent();
+            return ResultViewModel.Success();
         }
 
-        [HttpDelete("{id}")]
-        public IActionResult Delete(int id)
+        public ResultViewModel Delete(int id)
         {
             var project = _context.Projects.SingleOrDefault(p => p.Id == id);
             if (project is null)
             {
-                return NotFound();
+                return ResultViewModel.Error("Projeto não existe");
             }
+
             project.SetAsDeleted();
             _context.Projects.Update(project);
             _context.SaveChanges();
-            return NoContent();
+
+            return ResultViewModel.Success();
         }
 
-        //PUT api/projects/id/start
-        [HttpPut("{id}/start")]
-        public IActionResult Start(int id)
+        public ResultViewModel Start(int id)
         {
             var project = _context.Projects.SingleOrDefault(p => p.Id == id);
             if (project is null)
             {
-                return NotFound();
+                return ResultViewModel.Error("Projeto não existe");
             }
+
             project.Start();
             _context.Projects.Update(project);
             _context.SaveChanges();
-            return NoContent();
+
+            return ResultViewModel.Success();
         }
 
-        //PUT api/projects/id/complete
-        [HttpPut("{id}/complete")]
-        public IActionResult Complete(int id)
+        public ResultViewModel Complete(int id)
         {
             var project = _context.Projects.SingleOrDefault(p => p.Id == id);
             if (project is null)
             {
-                return NotFound();
+                return ResultViewModel.Error("Projeto não existe");
             }
 
             project.Complete();
             _context.Projects.Update(project);
             _context.SaveChanges();
 
-            return NoContent();
+            return ResultViewModel.Success();
         }
 
-        //DELETE api/projects/id
-        
-
-        [HttpPost("{id}/comments")]
-        public IActionResult PostComment(int id, CreateProjectCommentsInputModel model)
+        public ResultViewModel InsertComment(int id, CreateProjectCommentsInputModel model)
         {
             var project = _context.Projects.SingleOrDefault(p => p.Id == id);
             if (project is null)
             {
-                return NotFound();
+                return ResultViewModel.Error("Projeto não existe");
             }
             var comment = new ProjectComment(model.Content, model.IdProject, model.IdUser);
             _context.ProjectComments.Add(comment);
             _context.SaveChanges();
-            return Ok(comment);
-        }
+            return ResultViewModel<CreateProjectCommentsInputModel>.Success(model);
+        }        
     }
 }
