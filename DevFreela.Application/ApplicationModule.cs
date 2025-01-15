@@ -6,6 +6,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DevFreela.Application.Models;
+using MediatR;
 
 namespace DevFreela.Application
 {
@@ -31,6 +33,10 @@ namespace DevFreela.Application
             {
                 config.RegisterServicesFromAssemblyContaining<InsertProjectCommand>();
             });
+
+            services
+                .AddTransient<IPipelineBehavior<InsertProjectCommand, ResultViewModel<int>>,
+                    ValidateInsertCommandBehavior>();
 
             return services;
         }
