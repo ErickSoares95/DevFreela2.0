@@ -179,3 +179,6 @@ C:\Users\erik.lira\Desktop\Csharp\DevFreela\DevFreela.API\bin\Debug\net8.0\DevFr
 C:\Users\erik.lira\Desktop\Csharp\DevFreela\DevFreela.API\bin\Debug\net8.0\DevFreela.Infrastructure.pdb
 C:\Users\erik.lira\Desktop\Csharp\DevFreela\DevFreela.API\bin\Debug\net8.0\MediatR.dll
 C:\Users\erik.lira\Desktop\Csharp\DevFreela\DevFreela.API\bin\Debug\net8.0\MediatR.Contracts.dll
+C:\Users\erik.lira\Desktop\Csharp\DevFreela\DevFreela.API\bin\Debug\net8.0\FluentValidation.dll
+C:\Users\erik.lira\Desktop\Csharp\DevFreela\DevFreela.API\bin\Debug\net8.0\FluentValidation.AspNetCore.dll
+C:\Users\erik.lira\Desktop\Csharp\DevFreela\DevFreela.API\bin\Debug\net8.0\FluentValidation.DependencyInjectionExtensions.dll
