@@ -1,16 +1,15 @@
 ﻿using DevFreela.Application.Models;
-using DevFreela.Infrastructure.Persistence;
 using Microsoft.AspNetCore.Mvc;
-using DevFreela.Application.Services;
 using MediatR;
 using DevFreela.Application.Queries.ProjectQueries.GetAllProjects;
-using DevFreela.Application.Queries.ProjectQueries.GetProjectById;
+using DevFreela.Application.Queries.ProjectQueries.GetProjectDetailsById;
 using DevFreela.Application.Commands.ProjectCommands.InsertProject;
 using DevFreela.Application.Commands.ProjectCommands.UpdateProject;
 using DevFreela.Application.Commands.ProjectCommands.DeleteProject;
 using DevFreela.Application.Commands.ProjectCommands.StartProject;
 using DevFreela.Application.Commands.ProjectCommands.CompleteProject;
 using DevFreela.Application.Commands.ProjectCommands.InsertComment;
+using DevFreela.Application.Queries.ProjectQueries.GetProjectDetailsById;
 
 namespace DevFreela.API.Controllers
 {
@@ -19,9 +18,7 @@ namespace DevFreela.API.Controllers
     public class ProjectsController : ControllerBase
     {
         public readonly IMediator _mediator;
-        //Padrão options, atráves da propriedade value consegue configurações
-        private readonly FreelanceTotalCostConfig _config;
-        public ProjectsController(IProjectService service, IMediator mediator)
+        public ProjectsController(IMediator mediator)
         {
             _mediator = mediator;
         }
@@ -39,7 +36,7 @@ namespace DevFreela.API.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> GetById(int id)
         {
-            var result = await _mediator.Send(new GetProjectByIdQuery(id));
+            var result = await _mediator.Send(new GetProjectDetailsByIdQuery(id));
 
             if (!result.IsSuccess)
             {

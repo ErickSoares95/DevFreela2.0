@@ -1,5 +1,5 @@
 ﻿using DevFreela.Application.Models;
-using DevFreela.Application.Queries.ProjectQueries.GetProjectById;
+using DevFreela.Application.Queries.ProjectQueries.GetProjectDetailsById;
 using DevFreela.Infrastructure.Persistence;
 using MediatR;
 using Microsoft.EntityFrameworkCore;

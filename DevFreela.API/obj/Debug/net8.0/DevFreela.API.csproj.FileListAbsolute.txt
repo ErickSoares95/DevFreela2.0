@@ -177,6 +177,5 @@ C:\Users\erik.lira\Desktop\Csharp\DevFreela\DevFreela.API\bin\Debug\net8.0\DevFr
 C:\Users\erik.lira\Desktop\Csharp\DevFreela\DevFreela.API\bin\Debug\net8.0\DevFreela.Application.pdb
 C:\Users\erik.lira\Desktop\Csharp\DevFreela\DevFreela.API\bin\Debug\net8.0\DevFreela.Core.pdb
 C:\Users\erik.lira\Desktop\Csharp\DevFreela\DevFreela.API\bin\Debug\net8.0\DevFreela.Infrastructure.pdb
-C:\Users\erik.lira\Desktop\Csharp\DevFreela\DevFreela.API\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt
 C:\Users\erik.lira\Desktop\Csharp\DevFreela\DevFreela.API\bin\Debug\net8.0\MediatR.dll
 C:\Users\erik.lira\Desktop\Csharp\DevFreela\DevFreela.API\bin\Debug\net8.0\MediatR.Contracts.dll
