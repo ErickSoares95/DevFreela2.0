@@ -9,25 +9,22 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DevFreela.Core.Repository;
 
 namespace DevFreela.Application.Queries.UserQueries.GetUserById
 {
     public class GetUserByidQueryHandler : IRequestHandler<GetUserByidQuery, ResultViewModel<UserItemViewModel>>
     {
-
-
-        private readonly DevFreelaDbContext _context;
-
-        public GetUserByidQueryHandler(DevFreelaDbContext context)
+        public GetUserByidQueryHandler(IUserRepository repository)
         {
-            _context = context;
+            _repository = repository;
         }
+
+        private readonly IUserRepository _repository;
 
         public async Task<ResultViewModel<UserItemViewModel>> Handle(GetUserByidQuery request, CancellationToken cancellationToken)
         {
-            var user = await _context.Users
-                .Include(p => p.Skills)
-                .SingleAsync(p => p.Id == request.Id);
+            var user = await _repository.GetById(request.Id);
 
             if (user is null)
             {
@@ -35,6 +32,7 @@ namespace DevFreela.Application.Queries.UserQueries.GetUserById
             }
 
             var model = UserItemViewModel.FromEntity(user);
+            
             return ResultViewModel<UserItemViewModel>.Success(model);
         }
     }

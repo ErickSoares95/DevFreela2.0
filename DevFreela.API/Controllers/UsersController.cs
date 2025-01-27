@@ -18,8 +18,6 @@ namespace DevFreela.API.Controllers
             _mediator = mediator;
         }
 
-
-
         //Get api/users?search=crm
         [HttpGet]
         public async Task<IActionResult> Get(string search = "")
