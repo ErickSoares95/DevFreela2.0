@@ -1,5 +1,6 @@
 using DevFreela.Core.Entities;
 using DevFreela.Core.Enums;
+using DevFreela.UnitTests.Fakes;
 using FluentAssertions;
 
 namespace DevFreela.UnitTests.Core;
@@ -64,7 +65,8 @@ public class ProjectTests
     public void ProjectIsInvalidState_Complete_ThrowssException()
     {
         //Arrange
-        var project = new Project("Projeto A", "Descrição do projeto", 1, 2, 20000);
+        // var project = new Project("Projeto A", "Descrição do projeto", 1, 2, 20000);
+        var project =  FakeDataHelper.CreateFakeProject();
         project.Start();
         
         //Act + Assert
@@ -78,7 +80,8 @@ public class ProjectTests
     public void ProjectIsStated_SetPaymentPending_Success()
     {
         // Arrange
-        var project = new Project("Projeto A", "Descrição do projeto", 1, 2, 20000);
+        // var project = new Project("Projeto A", "Descrição do projeto", 1, 2, 20000);
+        var project =  FakeDataHelper.CreateFakeProject();
         project.Start();
         
         //Act
@@ -93,8 +96,8 @@ public class ProjectTests
     public void ProjectIsCreated_Update_Success()
     {
         //Arrange
-        var project = new Project("Projeto A", "Descrição do projeto", 1, 2, 20000);
-        
+        // var project = new Project("Projeto A", "Descrição do projeto", 1, 2, 20000);
+        var project =  FakeDataHelper.CreateFakeProject();
         //Act
         project.Update("Novo Titulo", "Descrição nova", 5000);
         
