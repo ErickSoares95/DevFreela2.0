@@ -1,6 +1,7 @@
 using DevFreela.Application.Commands.ProjectCommands.InsertProject;
 using DevFreela.Core.Entities;
 using DevFreela.Core.Repository;
+using FluentAssertions;
 using Moq;
 using NSubstitute;
 
@@ -61,7 +62,11 @@ public class InsertProjectHandlerTests
         
         //Assert
         Assert.True(result.IsSuccess);
+
+        result.IsSuccess.Should().BeTrue();
         Assert.Equal(1, result.Data);
+        
+        result.Data.Should().Be(id);
         
         //mock.Verify(m => m.Add(It.IsAny<Project>()), Times.Once);
         
