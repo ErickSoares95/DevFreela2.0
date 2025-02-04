@@ -182,3 +182,4 @@ C:\Users\erik.lira\Desktop\Csharp\DevFreela\DevFreela.API\bin\Debug\net8.0\Media
 C:\Users\erik.lira\Desktop\Csharp\DevFreela\DevFreela.API\bin\Debug\net8.0\FluentValidation.dll
 C:\Users\erik.lira\Desktop\Csharp\DevFreela\DevFreela.API\bin\Debug\net8.0\FluentValidation.AspNetCore.dll
 C:\Users\erik.lira\Desktop\Csharp\DevFreela\DevFreela.API\bin\Debug\net8.0\FluentValidation.DependencyInjectionExtensions.dll
+C:\Users\erik.lira\Desktop\Csharp\DevFreela\DevFreela.API\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
