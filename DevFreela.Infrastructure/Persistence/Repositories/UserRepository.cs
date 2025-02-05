@@ -24,11 +24,18 @@ public class UserRepository : IUserRepository
         return users;
     }
 
-    public async Task<User> GetById(int id)
+    public async Task<User?> GetById(int id)
     {
         var user = await _context.Users
             .Include(p => p.Skills)
-            .SingleAsync(p => p.Id == id);
+            .SingleOrDefaultAsync(p => p.Id == id);
+        
+        return user;
+    }
+    public async Task<User?> GetByEmailAndHash(string email, string hash)
+    {
+        var user = await _context.Users
+            .SingleOrDefaultAsync(p => p.Email == email && p.Password == hash);
         
         return user;
     }

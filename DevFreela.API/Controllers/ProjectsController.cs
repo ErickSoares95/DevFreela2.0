@@ -10,6 +10,7 @@ using DevFreela.Application.Commands.ProjectCommands.StartProject;
 using DevFreela.Application.Commands.ProjectCommands.CompleteProject;
 using DevFreela.Application.Commands.ProjectCommands.InsertComment;
 using DevFreela.Application.Queries.ProjectQueries.GetProjectDetailsById;
+using Microsoft.AspNetCore.Authorization;
 
 namespace DevFreela.API.Controllers
 {
@@ -17,12 +18,13 @@ namespace DevFreela.API.Controllers
     [Route("api/projects")]
     public class ProjectsController : ControllerBase
     {
-        public readonly IMediator _mediator;
+        private readonly IMediator _mediator;
         public ProjectsController(IMediator mediator)
         {
             _mediator = mediator;
         }
         [HttpGet]
+        [Authorize(Roles = "freelancer, client")]
         public async Task<IActionResult> Get(string search = "")
         {
             var query = new GetAllProjectsQuery();
@@ -49,6 +51,7 @@ namespace DevFreela.API.Controllers
         //CreatedAtAction quando vocçe futuramente vai poder consultar em outro endpoint
         //Primeiro é o metodo que poderar se consultado, segundo parametro que no caso é o id e terceiro o modelo
         [HttpPost]
+        [Authorize(Roles = "client")]
         public async Task<IActionResult> Post(InsertProjectCommand command)
         { 
             var result = await _mediator.Send(command);

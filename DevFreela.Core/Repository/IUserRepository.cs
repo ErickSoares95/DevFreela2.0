@@ -6,6 +6,7 @@ public interface IUserRepository
 {
     Task<List<User>> GetAll();
     Task<User?> GetById(int id);
+    Task<User?> GetByEmailAndHash(string email, string hash);
     Task<int> Add(User user);
     Task Update(User project);
     Task<bool> Exists(int id);
